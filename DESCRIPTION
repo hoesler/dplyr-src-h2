@@ -1,0 +1,17 @@
+Package: dplyr.src.h2
+Title: Use a H2 database as a dplyr src
+Version: 0.0.99
+Author: Christoph Hoesler <christoph.hoesler@gmail.com>
+Maintainer: Christoph Hoesler <christoph.hoesler@gmail.com>
+Description: Use a H2 database as a dplyr src
+Depends:
+    R (>= 3.0.3),
+    dplyr (>= 0.3.0.9000)
+Imports:
+    RH2 (>= 0.9.99),
+    assertthat (>= 0.1),
+    DBI (>= 0.3)
+License: MIT + file LICENSE
+LazyData: true
+Suggests:
+    testthat
