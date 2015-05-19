@@ -12,5 +12,5 @@ r_binary_packages:
   - rJava
 
 r_github_packages:
-  - hoesler/RH2
   - hoesler/RJDBC
+  - hoesler/RH2
