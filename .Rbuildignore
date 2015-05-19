@@ -1,0 +1,5 @@
+Readme.md
+^.*\.Rproj$
+^\.Rproj\.user$
+^.*.sublime-*
+.travis.yml

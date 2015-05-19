@@ -1,0 +1,15 @@
+language: r
+
+sudo: required
+
+warnings_are_errors: true
+
+r_binary_packages:
+  - DBI
+  - dplyr
+  - testthat
+  - assertthat
+
+r_github_packages:
+  - hoesler/rh2
+  - hoesler/rjdbc
