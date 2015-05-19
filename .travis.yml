@@ -9,6 +9,7 @@ r_binary_packages:
   - dplyr
   - testthat
   - assertthat
+  - rJava
 
 r_github_packages:
   - hoesler/RH2
