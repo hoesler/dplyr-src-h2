@@ -58,3 +58,15 @@ src_translate_env.src_h2 <- function(x) {
 }
 
 # DBI methods ------------------------------------------------------------------
+
+#' @export
+db_insert_into.H2Connection <- function(con, table, values, ...) {
+  dbWriteTable(con, table, values)
+  invisible()
+}
+
+#' @export
+db_analyze.H2Connection <- function(con, table, ...) {
+  sql <- build_sql("ANALYZE", con = con)
+  dbGetQuery(con, sql)
+}
