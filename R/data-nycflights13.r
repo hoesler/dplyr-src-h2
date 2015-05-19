@@ -5,11 +5,11 @@
 #' to making joining tables on natural keys efficient.
 #'
 #' @keywords internal
-#' @name nycflights13
+#' @name h2-nycflights13
 NULL
 
 #' @export
-#' @rdname nycflights13
+#' @rdname h2-nycflights13
 #' @param path location of sqlite database file
 nycflights13_h2 <- function(path = NULL) {
   cache_computation("nycflights_h2", {
