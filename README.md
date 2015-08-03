@@ -14,7 +14,7 @@ devtools::install_github("hoesler/dplyr-src-h2")
 
 ## Usage
 ```R
-src <- src_h2("mem:") # Use an URL
+src <- src_h2("mem:") # Use a URL (http://h2database.com/html/features.html#database_url)
 src <- src_h2(dbConnect(H2(), "mem:", "sa", "")) # Use a H2Connection
-src_nycflights <- nycflights13_h2() # Create a H2 src filled with nycflights13 data (Used for tests, examples, ...)
+src <- nycflights13_h2() # A H2 src with nycflights13 data (Used for tests, examples, ...)
 ```

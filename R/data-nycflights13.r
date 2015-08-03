@@ -10,34 +10,31 @@ NULL
 
 #' @export
 #' @rdname h2-nycflights13
-#' @param path location of sqlite database file
-nycflights13_h2 <- function(path = NULL) {
-  cache_computation("nycflights_h2", {
+nycflights13_h2 <- function() {
+  cache_load("nycflights_h2", {
     src <- src_h2("mem:nycflights")
     dplyr::copy_nycflights13(src)
   })
 }
 
-# Environment for caching connections etc
+# Environment for caching
 cache <- new.env(parent = emptyenv())
 
 is_cached <- function(name) exists(name, envir = cache)
-set_cache <- function(name, value) {
-#   message("Setting ", name, " in cache")
+cache_insert <- function(name, value) {
   assign(name, value, envir = cache)
   value
 }
-get_cache <- function(name) {
-#   message("Getting ", name, " from cache")
+cache_get <- function(name) {
   get(name, envir = cache)
 }
 
-cache_computation <- function(name, computation) {
+cache_load <- function(name, computation) {
   if (is_cached(name)) {
-    get_cache(name)
+    cache_get(name)
   } else {
     res <- force(computation)
-    set_cache(name, res)
+    cache_insert(name, res)
     res
   }
 }
