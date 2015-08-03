@@ -5,10 +5,7 @@
 \alias{nycflights13_h2}
 \title{Database versions of the nycflights13 data}
 \usage{
-nycflights13_h2(path = NULL)
-}
-\arguments{
-\item{path}{location of sqlite database file}
+nycflights13_h2()
 }
 \description{
 These functions cache the data from the \code{nycflights13} database in
