@@ -1,6 +1,6 @@
 #' @import assertthat
 #' @import DBI
-#' @import RH2
+#' @import dbj.h2
 #' @import dplyr
 NULL
 
@@ -21,15 +21,15 @@ src_h2 <- function(x) UseMethod("src_h2")
 #' @rdname src_h2
 #' @export
 src_h2.character <- function(x, ...) {
-  assert_that(requireNamespace("RH2", quietly = TRUE))
-  con <- DBI::dbConnect(RH2::H2(), x, ...)
+  assert_that(requireNamespace("dbj.h2", quietly = TRUE))
+  con <- DBI::dbConnect(dbj.h2::driver(), x, ...)
   src_h2(con, ...)
 }
 
 #' @rdname src_h2
 #' @export
 src_h2.H2Connection <- function(x, ...) {
-  assert_that(requireNamespace("RH2", quietly = TRUE))
+  assert_that(requireNamespace("dbj.h2", quietly = TRUE))
   info <- DBI::dbGetInfo(x)
   src_sql("h2", x, info = info, ...)
 }
