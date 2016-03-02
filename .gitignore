@@ -1,9 +1,16 @@
 # History files
 .Rhistory
+.Rapp.history
 
 # Example code in package build process
 *-Ex.R
 
-# R data files from past sessions
-.Rdata
-dplyr-src-rh2.sublime-project
+# RStudio files
+.Rproj.user/
+
+# produced vignettes
+vignettes/*.html
+vignettes/*.pdf
+
+# Sublime Text project file
+*.sublime-project
