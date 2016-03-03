@@ -1,5 +1,5 @@
 language: r
 
 r_github_packages:
-  - hoesler/dbj@development
-  - hoesler/dbj-h2@development
+  - hoesler/dbj
+  - hoesler/dbj-h2
