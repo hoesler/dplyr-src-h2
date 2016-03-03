@@ -1,6 +1,6 @@
 Package: dplyr.src.h2
 Title: Use a H2 database as a dplyr src
-Version: 0.0.99
+Version: 0.1
 Author: Christoph Hoesler <christoph.hoesler@gmail.com>
 Maintainer: Christoph Hoesler <christoph.hoesler@gmail.com>
 Description: Use a H2 database as a dplyr src.
