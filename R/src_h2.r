@@ -61,7 +61,7 @@ src_translate_env.src_h2 <- function(x) {
 
 #' @export
 db_insert_into.H2Connection <- function(con, table, values, ...) {
-  dbWriteTable(con, table, values)
+  dbWriteTable(con, table, values, append = TRUE)
   invisible()
 }
 
