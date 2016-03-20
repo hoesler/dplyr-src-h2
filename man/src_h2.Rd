@@ -3,17 +3,11 @@
 \name{src_h2}
 \alias{src_desc.src_h2}
 \alias{src_h2}
-\alias{src_h2.H2Connection}
-\alias{src_h2.character}
 \alias{src_translate_env.src_h2}
 \alias{tbl.src_h2}
 \title{Connect to a H2 database.}
 \usage{
-src_h2(x)
-
-\method{src_h2}{character}(x, ...)
-
-\method{src_h2}{H2Connection}(x, ...)
+src_h2(x, ...)
 
 \method{tbl}{src_h2}(src, from, ...)
 

@@ -1,8 +1,14 @@
 #' @import assertthat
 #' @import DBI
-#' @import dbj.h2
+#' @import dbj
 #' @import dplyr
 NULL
+
+setClass("H2JDBCConnection", contains = c("JDBCConnection"))
+
+drv_h2 <- function() {
+  dbj::driver('org.h2.Driver', maven_jar('com.h2database', 'h2', '1.3.176'))
+}
 
 #' Connect to a H2 database.
 #' 
@@ -16,22 +22,14 @@ NULL
 #'   database connector, \code{dbConnect}. For the tbl, included for
 #'   compatibility with the generic, but otherwise ignored.
 #' @export
-src_h2 <- function(x) UseMethod("src_h2")
-
-#' @export
-#' @rdname src_h2
-src_h2.character <- function(x, ...) {
+src_h2 <- function(x, ...) {
   assert_that(requireNamespace("dbj.h2", quietly = TRUE))
-  con <- DBI::dbConnect(dbj.h2::driver(), x, ...)
-  src_h2(con, ...)
-}
-
-#' @export
-#' @rdname src_h2
-src_h2.H2Connection <- function(x, ...) {
-  assert_that(requireNamespace("dbj.h2", quietly = TRUE))
-  info <- DBI::dbGetInfo(x)
-  src_sql("h2", x, info = info, ...)
+  h2_driver <- drv_h2()
+  url <- sprintf("jdbc:h2:%s", sub("^(.*)\\.h2\\.db$", "\\1", x))
+  dbj_connection <- DBI::dbConnect(h2_driver, url, ...)
+  h2_connection <- new("H2JDBCConnection", dbj_connection)
+  info <- DBI::dbGetInfo(h2_connection)
+  src_sql("h2", h2_connection, info = info, ...)
 }
 
 #' @export
@@ -43,7 +41,8 @@ tbl.src_h2 <- function(src, from, ...) {
 #' @export
 #' @rdname src_h2
 src_desc.src_h2 <- function(x) {
-  paste0(x$info$dbname, x$info$db.version, " [", x$info$url, "]")
+  info <- x$info
+  with(info, sprintf("%s %s [%s@%s]", dbname, db.version, username, url))
 }
 
 #' @export
@@ -65,13 +64,13 @@ src_translate_env.src_h2 <- function(x) {
 # DBI methods ------------------------------------------------------------------
 
 #' @export
-db_insert_into.H2Connection <- function(con, table, values, ...) {
+db_insert_into.H2JDBCConnection <- function(con, table, values, ...) {
   dbWriteTable(con, table, values, append = TRUE)
   invisible()
 }
 
 #' @export
-db_analyze.H2Connection <- function(con, table, ...) {
+db_analyze.H2JDBCConnection <- function(con, table, ...) {
   sql <- build_sql("ANALYZE", con = con)
   dbGetQuery(con, sql)
 }
