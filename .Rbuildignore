@@ -1,5 +1,12 @@
-Readme.md
+^README\.Rmd$
+^NEWS\.md$
+
+# IDE Project files
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^.*.sublime-*
-.travis.yml
+^src/java/.idea/
+
+# CI config
+^.travis.yml
+^appveyor\.yml$
