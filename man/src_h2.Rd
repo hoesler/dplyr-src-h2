@@ -3,11 +3,17 @@
 \name{src_h2}
 \alias{src_desc.src_h2}
 \alias{src_h2}
+\alias{src_h2.JDBCConnection}
+\alias{src_h2.character}
 \alias{src_translate_env.src_h2}
 \alias{tbl.src_h2}
-\title{Connect to a H2 database.}
+\title{Create a source object for an H2 database.}
 \usage{
 src_h2(x, ...)
+
+\method{src_h2}{character}(x, ...)
+
+\method{src_h2}{JDBCConnection}(x, ...)
 
 \method{tbl}{src_h2}(src, from, ...)
 
@@ -30,6 +36,12 @@ compatibility with the generic, but otherwise ignored.}
 \code{\link{sql}} described a derived table or compound join.}
 }
 \description{
-Connect to a H2 database.
+Create a source object for an H2 database.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{character}: Create the source from an H2 URL.
+
+\item \code{JDBCConnection}: Create the source from an JDBC connection.
+}}
 
