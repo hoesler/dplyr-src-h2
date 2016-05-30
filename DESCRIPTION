@@ -1,9 +1,10 @@
 Package: dplyr.src.h2
 Title: Use a H2 database as a dplyr src
 Version: 0.1
-Author: Christoph Hoesler <christoph.hoesler@gmail.com>
-Maintainer: Christoph Hoesler <christoph.hoesler@gmail.com>
-Description: Use a H2 database as a dplyr src.
+Encoding: UTF-8
+Author: Christoph Hösler <christoph.hoesler@gmail.com>
+Maintainer: Christoph Hösler <christoph.hoesler@gmail.com>
+Description: Use an H2 database as a dplyr data source.
 Depends:
     R (>= 3.0.3)
 Imports:
@@ -12,10 +13,8 @@ Imports:
     DBI (>= 0.3.1),
     dplyr (>= 0.4.1)
 Suggests:
-    nycflights13 (>= 0.2.0)
+    nycflights13 (>= 0.2.0),
+    testthat
 License: MIT + file LICENSE
 LazyData: true
-Suggests:
-    testthat,
-    nycflights13
 RoxygenNote: 5.0.1
