@@ -1,9 +1,9 @@
 context("src_h2")
 
-test_that("a h2 src can be created by supplying an URL", {
+test_that("src_h2() creates an src_h2 object", {
   # when
   src <- src_h2("mem:")
 
   # then
-  expect_that(src, is_a("src_h2"))
+  expect_is(src, "src_h2")
 })
