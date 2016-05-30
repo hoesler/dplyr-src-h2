@@ -4,13 +4,15 @@
 #' @importFrom methods new
 NULL
 
+#' A wrapper class for JDBCConnection objects created in src_h2. Used for H2 specific dispatch.
+#' @export
 setClass("H2JDBCConnection", contains = c("JDBCConnection"))
 
 drv_h2 <- function() {
   dbj::driver('org.h2.Driver', resolve(module('com.h2database:h2:1.3.176')))
-}
+}               
 
-#' Connect to a H2 database.
+#' Create a source object for an H2 database.
 #' 
 #' @param x an URL for the H2 database connection as defined at \url{http://h2database.com/html/features.html#database_url}
 #'  without the 'jdbc:h2:' prefix.
@@ -22,12 +24,24 @@ drv_h2 <- function() {
 #'   database connector, \code{dbConnect}. For the tbl, included for
 #'   compatibility with the generic, but otherwise ignored.
 #' @export
-src_h2 <- function(x, ...) {
-  h2_driver <- drv_h2()
+src_h2 <- function(x, ...) UseMethod("src_h2")
+
+#' @export
+#' @describeIn src_h2 Create the source from an H2 URL.
+src_h2.character <- function(x, ...) {
   url <- sprintf("jdbc:h2:%s", sub("^(.*)\\.h2\\.db$", "\\1", x))
-  dbj_connection <- dbConnect(h2_driver, url, ...)
-  h2_connection <- new("H2JDBCConnection", dbj_connection)
-  info <- dbGetInfo(h2_connection)
+  dbj_connection <- dbConnect(drv_h2(), url, ...)
+  src_h2(dbj_connection, ...)
+}
+
+#' @export
+#' @describeIn src_h2 Create the source from an JDBC connection.
+src_h2.JDBCConnection <- function(x, ...) {
+  info <- dbGetInfo(x)
+  if (all(startsWith(info$url, "jdbc:h2"))) {
+    warning("Expected a jdbc:h2 URL. Is this a valid H2 connection?")
+  }
+  h2_connection <- new("H2JDBCConnection", x)
   src_sql("h2", h2_connection, info = info, ...)
 }
 
