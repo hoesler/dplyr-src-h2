@@ -7,7 +7,7 @@ NULL
 setClass("H2JDBCConnection", contains = c("JDBCConnection"))
 
 drv_h2 <- function() {
-  dbj::driver('org.h2.Driver', maven_jar('com.h2database', 'h2', '1.3.176'))
+  dbj::driver('org.h2.Driver', resolve(module('com.h2database:h2:1.3.176')))
 }
 
 #' Connect to a H2 database.
