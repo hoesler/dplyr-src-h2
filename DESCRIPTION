@@ -1,6 +1,6 @@
 Package: dplyr.src.h2
 Title: Use a H2 database as a dplyr src
-Version: 0.1
+Version: 0.1.0.9000
 Encoding: UTF-8
 Author: Christoph Hösler <christoph.hoesler@gmail.com>
 Maintainer: Christoph Hösler <christoph.hoesler@gmail.com>
