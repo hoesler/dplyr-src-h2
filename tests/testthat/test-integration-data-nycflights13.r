@@ -9,7 +9,7 @@ test_that("nycflights13_h2 has flights table", {
   # then
   expect_is(flights_db, "tbl_h2")
   expect_equal(nrow(flights_db), 336776)
-  expect_equal(ncol(flights_db), 16)
+  expect_equal(ncol(flights_db), 19)
 })
 
 test_that("filter", {
