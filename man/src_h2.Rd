@@ -17,7 +17,7 @@ src_h2(x, ...)
 }
 \arguments{
 \item{x}{an URL for the H2 database connection as defined at \url{http://h2database.com/html/features.html#database_url}
-without the 'jdbc:h2:' prefix or a \code{\linkS4class{H2Connection}} object.
+without the 'jdbc:h2:' prefix.
 If \code{x} is a path to a local file, than the '.h2.db' suffix, if present, is stripped off automatically.}
 
 \item{...}{for the src, other arguments passed on to the underlying

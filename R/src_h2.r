@@ -1,7 +1,7 @@
-#' @import assertthat
-#' @import DBI
-#' @import dbj
+#' @importFrom DBI dbWriteTable dbGetQuery dbConnect dbGetInfo
+#' @importFrom dbj resolve module
 #' @import dplyr
+#' @importFrom methods new
 NULL
 
 setClass("H2JDBCConnection", contains = c("JDBCConnection"))
@@ -13,7 +13,7 @@ drv_h2 <- function() {
 #' Connect to a H2 database.
 #' 
 #' @param x an URL for the H2 database connection as defined at \url{http://h2database.com/html/features.html#database_url}
-#'  without the 'jdbc:h2:' prefix or a \code{\linkS4class{H2Connection}} object.
+#'  without the 'jdbc:h2:' prefix.
 #'  If \code{x} is a path to a local file, than the '.h2.db' suffix, if present, is stripped off automatically.
 #' @param src a h2 src created with \code{src_h2}.
 #' @param from Either a string giving the name of table in database, or
@@ -23,12 +23,11 @@ drv_h2 <- function() {
 #'   compatibility with the generic, but otherwise ignored.
 #' @export
 src_h2 <- function(x, ...) {
-  assert_that(requireNamespace("dbj.h2", quietly = TRUE))
   h2_driver <- drv_h2()
   url <- sprintf("jdbc:h2:%s", sub("^(.*)\\.h2\\.db$", "\\1", x))
-  dbj_connection <- DBI::dbConnect(h2_driver, url, ...)
+  dbj_connection <- dbConnect(h2_driver, url, ...)
   h2_connection <- new("H2JDBCConnection", dbj_connection)
-  info <- DBI::dbGetInfo(h2_connection)
+  info <- dbGetInfo(h2_connection)
   src_sql("h2", h2_connection, info = info, ...)
 }
 
