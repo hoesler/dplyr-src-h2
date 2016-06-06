@@ -15,8 +15,8 @@ devtools::install_github("hoesler/dplyr-src-h2")
 # Use an H2 URL (http://h2database.com/html/features.html#database_url)
 src <- src_h2("mem:")
 
-# Use an JDBCConnection object
-drv <- dbj::driver('org.h2.Driver', resolve(module('com.h2database:h2:1.3.176')))
+# Use an H2Connection object
+drv <- dbj.h2::driver(classpath = resolve(module('com.h2database:h2:1.3.176')))
 src <- src_h2(dbConnect(drv, "mem:", "sa", ""))
 
 # Create an H2 src with nycflights13 data (Used for tests, examples, ...)
