@@ -9,9 +9,10 @@ Depends:
     R (>= 3.0.3)
 Imports:
 	methods,
-    dbj (>= 0.2.0.9000),
+    dbj.h2 (>= 0.1.0.9000),
     DBI (>= 0.3.1),
     dplyr (>= 0.4.1)
+Remotes: hoesler/dbj-h2@development
 Suggests:
     nycflights13 (>= 0.2.0),
     testthat

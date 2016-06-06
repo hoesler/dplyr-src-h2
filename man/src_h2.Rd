@@ -3,7 +3,7 @@
 \name{src_h2}
 \alias{src_desc.src_h2}
 \alias{src_h2}
-\alias{src_h2.JDBCConnection}
+\alias{src_h2.H2Connection}
 \alias{src_h2.character}
 \alias{src_translate_env.src_h2}
 \alias{tbl.src_h2}
@@ -11,9 +11,9 @@
 \usage{
 src_h2(x, ...)
 
-\method{src_h2}{character}(x, ...)
+\method{src_h2}{character}(x, drv_h2 = dbj.h2::driver(), ...)
 
-\method{src_h2}{JDBCConnection}(x, ...)
+\method{src_h2}{H2Connection}(x, ...)
 
 \method{tbl}{src_h2}(src, from, ...)
 
@@ -22,13 +22,14 @@ src_h2(x, ...)
 \method{src_translate_env}{src_h2}(x)
 }
 \arguments{
-\item{x}{an URL for the H2 database connection as defined at \url{http://h2database.com/html/features.html#database_url}
-without the 'jdbc:h2:' prefix.
+\item{x}{an URL for the H2 database connection as defined at \url{http://h2database.com/html/features.html#database_url}.
 If \code{x} is a path to a local file, than the '.h2.db' suffix, if present, is stripped off automatically.}
 
 \item{...}{for the src, other arguments passed on to the underlying
 database connector, \code{dbConnect}. For the tbl, included for
 compatibility with the generic, but otherwise ignored.}
+
+\item{drv_h2}{The database driver}
 
 \item{src}{a h2 src created with \code{src_h2}.}
 
@@ -42,6 +43,6 @@ Create a source object for an H2 database.
 \itemize{
 \item \code{character}: Create the source from an H2 URL.
 
-\item \code{JDBCConnection}: Create the source from an JDBC connection.
+\item \code{H2Connection}: Create the source from an JDBC connection.
 }}
 
