@@ -12,10 +12,11 @@ Imports:
     dbj.h2 (>= 0.1.0.9000),
     DBI (>= 0.3.1),
     dplyr (>= 0.4.1)
-Remotes: hoesler/dbj-h2@development
+Remotes: hoesler/dbj-h2
 Suggests:
     nycflights13 (>= 0.2.0),
     testthat
+URL: http://github.com/hoesler/dplyr-src-h2
 License: MIT + file LICENSE
 LazyData: true
 RoxygenNote: 5.0.1
