@@ -1,6 +1,2 @@
 language: r
 cache: packages
-
-r_github_packages:
-  - hoesler/dbj@development
-  - hoesler/dbj-h2@development
