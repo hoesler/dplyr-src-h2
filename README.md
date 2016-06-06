@@ -7,7 +7,6 @@ A [dplyr](https://github.com/hadley/dplyr) extension which allows to use an H2 d
 ## Installation
 Assuming [devtools](https://github.com/hadley/devtools) is installed, run:
 ```R
-devtools::install_github("hoesler/dbj")
 devtools::install_github("hoesler/dplyr-src-h2")
 ```
 
